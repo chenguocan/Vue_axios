@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function queryData(url) {
+      var p = new Promise(function (reslove, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState != 4) {
+            return;
+          }
+          if (xhr.status === 200 && xhr.readyState === 4) {
+            reslove(xhr.responseText);
+          } else {
+            reject("出错了");
+          }
+        };
+        xhr.open("get", url);
+        xhr.send();
+      });
+    }
+  </script>
+</html>
